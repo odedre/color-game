@@ -4,6 +4,7 @@ module app.colors {
   interface IcolorsScope {
     colors: Color[];
     fiveColors:Color[];
+    fullList:Color[];
     getColors(): any;
     getFive(): any;
   }
@@ -20,6 +21,7 @@ module app.colors {
   export class MainController implements IcolorsScope {
     colors: Color[];
     fiveColors:Color[];
+    fullList:Color[];
 
     static $inject = ['$http'];
 
@@ -43,11 +45,22 @@ module app.colors {
     }
 
     getFive(): any {
-      console.log();
+      this.fullList = this.colors;
+      console.log(this.fullList);
       console.log('getFive');
-      this.fiveColors = [];
+      // this.fiveColors = [];
+      if(!this.fiveColors) this.fiveColors = [];
       for(var i=0; i<5; i++) {
-          this.fiveColors.push(this.colors[i]);
+          if(!this.fiveColors.length) {
+            this.fiveColors = [];
+            this.fiveColors.push(this.colors[i]);
+          }
+
+          else {
+            console.log(this.fiveColors.length);
+            this.fiveColors.splice( i, 1, this.colors[this.fiveColors.length + i]);
+
+          }
       }
       console.log(this.fiveColors);
       // debugger;

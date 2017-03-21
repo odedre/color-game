@@ -4,7 +4,7 @@
       <div class="glyphicon glyphicon-menu-left" ng-click="loadPrevFive()"></div>
     </div>
 
-    <div class="showColors col-md-2"  ng-repeat="colors in vm.fiveColors">
+    <div class="showColors col-md-2"  ng-repeat="colors in vm.fiveColors track by $index">
       <div class="singleColor">
         <img class="colorBall"  ng-mouseover="open = true" ng-mouseleave="open = false" src="{{colors.img}}" />
         <div class="engName" ng-show="open">

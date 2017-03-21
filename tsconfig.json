@@ -2,5 +2,8 @@
   "files": [
     "public/js/mainCtrl.ts",
     "public/js/mainSer.ts"
-  ]
+  ],
+  "compilerOptions": {
+    "outDir": "public/js/build/"
+  }
 }

@@ -13,7 +13,7 @@ app.controller('mainCtrl', ['$scope', 'mainService', '$state', function($scope, 
           $scope.listOfFive.push(mainService.colorList[$scope.page+i]);
       }
     }
-    $scope.page += 5;
+    $scope.page < $scope.colorList.length ? $scope.page += 5: $scope.page =15 ;
     console.log($scope.page);
   }
 

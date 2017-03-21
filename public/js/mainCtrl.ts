@@ -4,7 +4,7 @@ module app.colors {
   interface IcolorsScope {
     colors: Color[];
 
-    getColors(): ng-IPromise<Color[]>;
+    getColors(): any;
   }
 
   class Color {
@@ -16,16 +16,23 @@ module app.colors {
     sound: any;
   }
 
-  class MainController implements IcolorScope {
+  class MainController implements IcolorsScope {
     colors: Color[];
 
-    static $inject = ['$http'];
+    static $inject = ['$http', '$ngRoute'];
 
-    constructor(private $http: ng-IHttpService, mainService) {
+
+    constructor(private $http: any, private $ngRoute: any) {
       this.getColors();
     }
 
-    getColors(): ng-IPromise<Color[]> {throw new Error("Not Implemented")}
+    getColors(): any {
+      // throw new Error("Not Implemented")
+      return this.$http.get('/home')
+        .then((res: any): any => {
+          this.colors = <Color[]>res.data;
+        });
+    }
 
 
   }

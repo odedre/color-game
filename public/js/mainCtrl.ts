@@ -16,21 +16,24 @@ module app.colors {
     sound: any;
   }
 
-  class MainController implements IcolorsScope {
+  export class MainController implements IcolorsScope {
     colors: Color[];
 
-    static $inject = ['$http', '$ngRoute'];
+    static $inject = ['$http'];
 
 
-    constructor(private $http: any, private $ngRoute: any) {
+    constructor(private $http: any) {
       this.getColors();
     }
 
     getColors(): any {
+      console.log('baaaa');
       // throw new Error("Not Implemented")
       return this.$http.get('/home')
         .then((res: any): any => {
           this.colors = <Color[]>res.data;
+          console.log(res.data);
+          console.log(this.colors);
         });
     }
 

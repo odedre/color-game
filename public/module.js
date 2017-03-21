@@ -1,4 +1,4 @@
-var app = angular.module('colors', ['ui.router']);
+var app = angular.module('app', ['ui.router']);
 
 app.config(['$stateProvider','$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 
@@ -6,17 +6,17 @@ app.config(['$stateProvider','$urlRouterProvider', function($stateProvider, $url
   $stateProvider
       .state('home', {
       url: '/',
-      templateUrl: './templates/home.html',
-      controller: 'mainCtrl',
-      resolve: {
-          getColors: ['mainService', function(mainService) {
-            console.log("get colors")
-              return mainService.getAllColors();
-          }]
-      }
+      templateUrl: './templates/home.html'
+      // controller: 'MainController',
+      // resolve: {
+      //     getColors: ['mainService', function(mainService) {
+      //       console.log("get colors")
+      //         return mainService.getAllColors();
+      //     }]
+      // }
 
     });
 
-    $urlRouterProvider.otherwise('/');
+    // $urlRouterProvider.otherwise('/');
 
 }]);

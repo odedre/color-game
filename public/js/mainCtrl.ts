@@ -3,8 +3,9 @@ module app.colors {
 
   interface IcolorsScope {
     colors: Color[];
-
+    fiveColors:Color[];
     getColors(): any;
+    getFive(): any;
   }
 
   class Color {
@@ -18,23 +19,39 @@ module app.colors {
 
   export class MainController implements IcolorsScope {
     colors: Color[];
+    fiveColors:Color[];
 
     static $inject = ['$http'];
 
 
     constructor(private $http: any) {
       this.getColors();
+      // this.getFive(colors);
+
     }
 
     getColors(): any {
-      console.log('baaaa');
+      console.log('getColors');
       // throw new Error("Not Implemented")
       return this.$http.get('/home')
         .then((res: any): any => {
           this.colors = <Color[]>res.data;
           console.log(res.data);
           console.log(this.colors);
+          this.getFive();
         });
+    }
+
+    getFive(): any {
+      console.log();
+      console.log('getFive');
+      this.fiveColors = [];
+      for(var i=0; i<5; i++) {
+          this.fiveColors.push(this.colors[i]);
+      }
+      console.log(this.fiveColors);
+      // debugger;
+      return this.fiveColors;
     }
 
 

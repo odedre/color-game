@@ -1,0 +1,20 @@
+<div class="container" ng-controller="mainCtrl">
+  <div class="row ballsDiv">
+    <div class="col-sm-1">
+      <div class="glyphicon glyphicon-menu-left" ng-click="loadPrevFive()"></div>
+    </div>
+
+    <div class="showColors col-md-2"  ng-repeat="colors in listOfFive">
+      <div class="singleColor">
+        <img class="colorBall" ng-click="" ng-mouseover="open = true" ng-mouseleave="open = false" src="{{colors.img}}" />
+        <div class="engName" ng-show="open">
+          <h1>{{colors.english}}</h1>
+        </div>
+              </div>
+    </div>
+
+    <div class="col-sm-1">
+      <div class="right glyphicon glyphicon-menu-right" ng-click="loadNextFive()"></div>
+    </div>
+  </div>
+</div>

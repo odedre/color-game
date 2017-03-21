@@ -1,0 +1,29 @@
+{
+  "name": "colors-project",
+  "version": "1.0.0",
+  "description": "Learn Hebrew Pod Assignment ---------------------------",
+  "main": "server.js",
+  "scripts": {
+    "test": "npm start",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/odedre/colorGame.git"
+  },
+  "author": "Oded Reuveny",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/odedre/colorGame/issues"
+  },
+  "homepage": "https://github.com/odedre/colorGame#readme",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2"
+  },
+  "devDependencies": {
+    "@types/angular": "^1.6.9",
+    "@types/angularjs": "^1.5.14-alpha",
+    "@types/node": "^7.0.8"
+  }
+}

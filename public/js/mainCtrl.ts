@@ -7,9 +7,12 @@ module app.colors {
     fullList:Color[];
     first: number;
     last: number;
+    index: number;
+    aud: any;
     getColors(): any;
     getNextFive(): any;
     loadPrevFive(): any;
+    playOnClick(index: number): any;
   }
 
   class Color {
@@ -18,7 +21,8 @@ module app.colors {
     english: string;
     engHeb: string;
     hebrew: string;
-    sound: any;
+    start: number;
+    length:number;
   }
 
   export class MainController implements IcolorsScope {
@@ -27,6 +31,8 @@ module app.colors {
     fullList:Color[];
     first: number;
     last: number;
+    index: number;
+    aud: any;
 
     static $inject = ['$http'];
 
@@ -91,6 +97,23 @@ module app.colors {
       console.log(this.fiveColors);
       // debugger;
       return this.fiveColors;
+    }
+
+    playOnClick(index: number): any {
+      console.log('play ' + index);
+      console.log(this.fiveColors[index]);
+      console.log(this.fiveColors[index].start, this.fiveColors[index].length);
+      console.log('colorSound'+this.fiveColors[index].id);
+      this.aud = document.getElementById('colorSound');
+
+
+      console.log(this.aud);
+      this.aud.addEventListener("seeked", function() {}, true);
+      this.aud.currentTime = this.fiveColors[index].start;
+      console.log(this.aud.currentTime);
+      // this.aud.load();
+      this.aud.play();
+      setTimeout( (() => this.aud.pause()), this.fiveColors[index].length*1000 );
     }
 
 

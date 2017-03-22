@@ -5,15 +5,17 @@
     </div>
     <div class="slide">
       <div class="showColors col-md-2"  ng-repeat="colors in vm.fiveColors track by $index">
-        <div class="singleColor">
-          <img class="colorBall"  ng-mouseover="open = true" ng-mouseleave="open = false" src="{{colors.img}}" />
-          <audio id="audio1ng-{{$index}}">
-	        <source src="{{colors.sound}}"></source>
-	      </audio>
+        <div class="singleColor" ng-click="vm.playOnClick($index)">
+          <img class="colorBall" ng-click="click =true" ng-mouseover="open = true" ng-mouseleave="open = false" src="{{colors.img}}" />
+          
           <div class="engName" ng-show="open">
             <h1>{{colors.english}}</h1>
           </div>
-                </div>
+          <div class="showOnClick" ng-show="click" ng-mouseleave = "click=false">
+            <h1>{{colors.engHeb}}</h1>
+            <h1>{{colors.hebrew}}</h1>
+          </div>
+        </div>
       </div>
     </div>
     <div class="col-sm-1">

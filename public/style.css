@@ -24,11 +24,13 @@
 }
 
 .engName {
+  margin-top: 20px;
   background-color: #e5e0e0;
   border-radius: 5px;
   text-align: center;
   position: relative;
   right: 12px;
+  font-size: 200%;
 }
 
 .ballsDiv {

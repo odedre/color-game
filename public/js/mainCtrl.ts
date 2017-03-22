@@ -2,17 +2,20 @@ module app.colors {
   'use strict';
 
   interface IcolorsScope {
-    colors: Color[];
-    fiveColors:Color[];
-    fullList:Color[];
+    colors: Color[];  //color list
+    fiveColors:Color[]; //5 colors currently on screen
+    fullList:Color[]; // full list of colors populated from server
+    tempFive: Color[]; //temporary allay to copy next colors on screen
     first: number;
     last: number;
     index: number;
     aud: any;
+    showColor: number;  // the index of the ball that we want to show full details after click
     getColors(): any;
-    getNextFive(): any;
-    loadPrevFive(): any;
-    playOnClick(index: number): any;
+    getNextFive(): any; // function to load next five colors
+    loadPrevFive(): any;  // function to load previous five colors
+    playOnClick(index: number): any; // play sound and show details
+
   }
 
   class Color {
@@ -29,16 +32,20 @@ module app.colors {
     colors: Color[];
     fiveColors:Color[];
     fullList:Color[];
+    tempFive:Color[];
     first: number;
     last: number;
     index: number;
     aud: any;
+    showColor: number;
 
     static $inject = ['$http'];
 
 
     constructor(private $http: any) {
       this.getColors();
+
+
       // this.getFive(colors);
 
     }
@@ -64,7 +71,7 @@ module app.colors {
       }
       else {
         this.last = this.fiveColors[0].id - 1;
-        this.first = (this.last -5) || 0;
+        this.first = this.last -5 < 0  || !this.last ? 0 : this.last -5;
         console.log(this.first, this.last);
         for(var i = 0; i< 5; i++) {
           this.fiveColors.splice( i, 1, this.fullList[this.first + i]);
@@ -77,27 +84,36 @@ module app.colors {
     }
 
     getNextFive(): any {
+      this.tempFive = [];
       this.fullList = this.colors;
       console.log(this.fullList);
       console.log('getFive');
       // this.fiveColors = [];
-      if(!this.fiveColors) this.fiveColors = [];
-      for(var i=0; i<5; i++) {
-          if(!this.fiveColors.length) {
-            this.fiveColors = [];
-            this.fiveColors.push(this.colors[i]);
-          }
-
-          else {
-            console.log(this.fiveColors.length);
-            this.fiveColors.splice( i, 1, this.colors[this.fiveColors.length + i]);
-
-          }
+      if(!this.fiveColors) {
+        this.fiveColors = [];
+        this.first = 0;
+        console.log('no array here');
       }
+      else if(!this.fiveColors[4]) return this.fiveColors;
+      else {
+        console.log(this.fiveColors);
+        this.first = this.fiveColors[this.fiveColors.length-1].id;
+        console.log(this.first);
+      }
+      for(var i=0; i<5; i++) {
+
+            this.tempFive.push(this.colors[this.first + i]);
+
+
+      }
+      this.fiveColors = this.tempFive;
+
       console.log(this.fiveColors);
       // debugger;
       return this.fiveColors;
     }
+
+
 
     playOnClick(index: number): any {
       console.log('play ' + index);
@@ -111,9 +127,11 @@ module app.colors {
       this.aud.addEventListener("seeked", function() {}, true);
       this.aud.currentTime = this.fiveColors[index].start;
       console.log(this.aud.currentTime);
-      // this.aud.load();
       this.aud.play();
       setTimeout( (() => this.aud.pause()), this.fiveColors[index].length*1000 );
+      // this.showTag();
+      this.showColor = index;
+      setTimeout( (() =>  this.showColor = 100), 2000);
     }
 
 

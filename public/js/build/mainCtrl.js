@@ -35,7 +35,7 @@ var app;
                 }
                 else {
                     this.last = this.fiveColors[0].id - 1;
-                    this.first = (this.last - 5) || 0;
+                    this.first = this.last - 5 < 0 || !this.last ? 0 : this.last - 5;
                     console.log(this.first, this.last);
                     for (var i = 0; i < 5; i++) {
                         this.fiveColors.splice(i, 1, this.fullList[this.first + i]);
@@ -45,22 +45,27 @@ var app;
                 }
             };
             MainController.prototype.getNextFive = function () {
+                this.tempFive = [];
                 this.fullList = this.colors;
                 console.log(this.fullList);
                 console.log('getFive');
                 // this.fiveColors = [];
-                if (!this.fiveColors)
+                if (!this.fiveColors) {
                     this.fiveColors = [];
-                for (var i = 0; i < 5; i++) {
-                    if (!this.fiveColors.length) {
-                        this.fiveColors = [];
-                        this.fiveColors.push(this.colors[i]);
-                    }
-                    else {
-                        console.log(this.fiveColors.length);
-                        this.fiveColors.splice(i, 1, this.colors[this.fiveColors.length + i]);
-                    }
+                    this.first = 0;
+                    console.log('no array here');
                 }
+                else if (!this.fiveColors[4])
+                    return this.fiveColors;
+                else {
+                    console.log(this.fiveColors);
+                    this.first = this.fiveColors[this.fiveColors.length - 1].id;
+                    console.log(this.first);
+                }
+                for (var i = 0; i < 5; i++) {
+                    this.tempFive.push(this.colors[this.first + i]);
+                }
+                this.fiveColors = this.tempFive;
                 console.log(this.fiveColors);
                 // debugger;
                 return this.fiveColors;
@@ -76,9 +81,11 @@ var app;
                 this.aud.addEventListener("seeked", function () { }, true);
                 this.aud.currentTime = this.fiveColors[index].start;
                 console.log(this.aud.currentTime);
-                // this.aud.load();
                 this.aud.play();
                 setTimeout((function () { return _this.aud.pause(); }), this.fiveColors[index].length * 1000);
+                // this.showTag();
+                this.showColor = index;
+                setTimeout((function () { return _this.showColor = 100; }), 2000);
             };
             return MainController;
         }());

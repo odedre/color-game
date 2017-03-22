@@ -4,16 +4,17 @@
       <div class="glyphicon glyphicon-menu-left" ng-click="vm.loadPrevFive()"></div>
     </div>
     <div class="slide">
-      <div class="showColors col-md-2"  ng-repeat="colors in vm.fiveColors track by $index">
+      <div class="showColors col-md-2" ng-mouseover="open = true" ng-mouseleave="open = false" ng-repeat="colors in vm.fiveColors track by $index">
         <div class="singleColor" ng-click="vm.playOnClick($index)">
-          <img class="colorBall" ng-click="click =true" ng-mouseover="open = true" ng-mouseleave="open = false" src="{{colors.img}}" />
-          
-          <div class="engName" ng-show="open">
-            <h1>{{colors.english}}</h1>
-          </div>
-          <div class="showOnClick" ng-show="click" ng-mouseleave = "click=false">
-            <h1>{{colors.engHeb}}</h1>
-            <h1>{{colors.hebrew}}</h1>
+          <img class="colorBall"   src="{{colors.img}}" />
+
+          <div class="engName">
+            <div ng-show="open || vm.showColor == $index" >{{colors.english}}</div>
+
+            <div class="showOnClick" ng-show="vm.showColor == $index">
+              <div>{{colors.engHeb}}</div>
+              <div>{{colors.hebrew}}</div>
+            </div>
           </div>
         </div>
       </div>

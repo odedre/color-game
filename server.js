@@ -39,7 +39,7 @@ var colorList = [
   english:"blue",
   img:"blue.png",
   start: 4.5,
-  length: 1.5
+  length: 1
   },
   {id: 3,
   engHeb: "kahol keheh",
@@ -55,7 +55,7 @@ var colorList = [
   english:"gray",
   img:"gray.png",
   start: 1.5,
-  length: 1
+  length: 0.8
   },
   {id: 5,
   engHeb: "yarok",
@@ -63,7 +63,7 @@ var colorList = [
   english:"green",
   img:"green.png",
   start: 21,
-  length: 1
+  length: 0.8
   },
   {id: 6,
   engHeb: "tchelet",
@@ -71,7 +71,7 @@ var colorList = [
   english:"light blue",
   img:"lightBlue.png",
   start: 15.5,
-  length: 2.5
+  length: 0.8
   },
   {id: 7,
   engHeb: "yarok bahir",
@@ -87,7 +87,7 @@ var colorList = [
   english:"maroon",
   img:"maroon.png",
   start: 0,
-  length:1.5
+  length:1
   },
   {id: 9,
   engHeb: "katom",
@@ -103,15 +103,15 @@ var colorList = [
   english:"pink",
   img:"pink.png",
   start: 13.5,
-  length:2
+  length:1
   },
   {id: 11,
   engHeb: "sagol",
   hebrew: "סגול",
   english:"purple",
   img:"purple.png",
-  start: 8.5,
-  length: 3
+  start: 9.5,
+  length: 1
   },
   {id: 12,
   engHeb: "adom",
@@ -119,7 +119,7 @@ var colorList = [
   english:"red",
   img:"red.png",
   start: 24.5,
-  length:0.5
+  length:0.7
   },
   {id: 13,
   engHeb: "tsahov",
@@ -127,7 +127,7 @@ var colorList = [
   english:"yellow",
   img:"yellow.png",
   start: 23,
-  length: 1.5
+  length: 1
   },
   {id: 14,
   engHeb: "lavan",
@@ -135,7 +135,7 @@ var colorList = [
   english:"white",
   img:"white.png",
   start: 8,
-  length:0.5
+  length:0.8
   }
 ];
 

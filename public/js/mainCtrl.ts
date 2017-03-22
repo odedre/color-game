@@ -11,6 +11,7 @@ module app.colors {
     index: number;
     aud: any;
     showColor: number;  // the index of the ball that we want to show full details after click
+    sliderClass: boolean; // changing slide css from div's class
     getColors(): any;
     getNextFive(): any; // function to load next five colors
     loadPrevFive(): any;  // function to load previous five colors
@@ -38,6 +39,7 @@ module app.colors {
     index: number;
     aud: any;
     showColor: number;
+    sliderClass: boolean;
 
     static $inject = ['$http'];
 
@@ -110,6 +112,19 @@ module app.colors {
 
       console.log(this.fiveColors);
       // debugger;
+      this.sliderClass = true;
+      // document.getElementById("slider").removeAttribute("slide");
+      document.getElementById('slider').style.webkitAnimation = "";
+
+      console.log(this.sliderClass);
+      setTimeout( () => {
+        // document.getElementById("slider").setAttribute("class", "slide");
+        this.sliderClass = false;
+        document.getElementById('slider').style.webkitAnimation = "none";
+
+        console.log(this.sliderClass);
+      }, 1000 );
+
       return this.fiveColors;
     }
 

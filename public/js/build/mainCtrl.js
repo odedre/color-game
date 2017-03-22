@@ -45,6 +45,7 @@ var app;
                 }
             };
             MainController.prototype.getNextFive = function () {
+                var _this = this;
                 this.tempFive = [];
                 this.fullList = this.colors;
                 console.log(this.fullList);
@@ -68,6 +69,16 @@ var app;
                 this.fiveColors = this.tempFive;
                 console.log(this.fiveColors);
                 // debugger;
+                this.sliderClass = true;
+                // document.getElementById("slider").removeAttribute("slide");
+                document.getElementById('slider').style.webkitAnimation = "";
+                console.log(this.sliderClass);
+                setTimeout(function () {
+                    // document.getElementById("slider").setAttribute("class", "slide");
+                    _this.sliderClass = false;
+                    document.getElementById('slider').style.webkitAnimation = "none";
+                    console.log(_this.sliderClass);
+                }, 1000);
                 return this.fiveColors;
             };
             MainController.prototype.playOnClick = function (index) {

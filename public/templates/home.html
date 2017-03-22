@@ -3,7 +3,7 @@
     <div class="col-sm-1">
       <div class="glyphicon glyphicon-menu-left" ng-click="vm.loadPrevFive()"></div>
     </div>
-    <div class="slide">
+    <div id="slider" class="slide">
       <div class="showColors col-md-2" ng-mouseover="open = true" ng-mouseleave="open = false" ng-repeat="colors in vm.fiveColors track by $index">
         <div class="singleColor" ng-click="vm.playOnClick($index)">
           <img class="colorBall"   src="{{colors.img}}" />

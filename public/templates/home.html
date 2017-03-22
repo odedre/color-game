@@ -3,16 +3,19 @@
     <div class="col-sm-1">
       <div class="glyphicon glyphicon-menu-left" ng-click="loadPrevFive()"></div>
     </div>
-
-    <div class="showColors col-md-2"  ng-repeat="colors in vm.fiveColors track by $index">
-      <div class="singleColor">
-        <img class="colorBall"  ng-mouseover="open = true" ng-mouseleave="open = false" src="{{colors.img}}" />
-        <div class="engName" ng-show="open">
-          <h1>{{colors.english}}</h1>
-        </div>
-              </div>
+    <div class="slide">
+      <div class="showColors col-md-2"  ng-repeat="colors in vm.fiveColors track by $index">
+        <div class="singleColor">
+          <img class="colorBall"  ng-mouseover="open = true" ng-mouseleave="open = false" src="{{colors.img}}" />
+          <audio id="audio1ng-{{$index}}">
+	        <source src="{{colors.sound}}"></source>
+	      </audio>
+          <div class="engName" ng-show="open">
+            <h1>{{colors.english}}</h1>
+          </div>
+                </div>
+      </div>
     </div>
-
     <div class="col-sm-1">
       <div class="right glyphicon glyphicon-menu-right" ng-click="vm.getFive()"></div>
     </div>

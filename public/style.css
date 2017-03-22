@@ -43,3 +43,22 @@
 .glyphicon:hover {
   color: black;
 }
+
+.slide {
+  animation-duration: .5s;
+  animation-name: slidein;
+  animation-direction:reverse;
+
+}
+
+@keyframes slidein {
+  from {
+    margin-left: 0%;
+    width: 100%;
+  }
+
+  to {
+    margin-left: 100%;
+    width: 300%;
+  }
+}

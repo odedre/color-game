@@ -5,8 +5,11 @@ module app.colors {
     colors: Color[];
     fiveColors:Color[];
     fullList:Color[];
+    first: number;
+    last: number;
     getColors(): any;
-    getFive(): any;
+    getNextFive(): any;
+    loadPrevFive(): any;
   }
 
   class Color {
@@ -22,6 +25,8 @@ module app.colors {
     colors: Color[];
     fiveColors:Color[];
     fullList:Color[];
+    first: number;
+    last: number;
 
     static $inject = ['$http'];
 
@@ -40,11 +45,32 @@ module app.colors {
           this.colors = <Color[]>res.data;
           console.log(res.data);
           console.log(this.colors);
-          this.getFive();
+          this.getNextFive();
         });
     }
 
-    getFive(): any {
+    loadPrevFive(): any {
+      console.log(this.fullList);
+      console.log(this.fiveColors);
+      if(this.fiveColors[0].id === 1 || !this.fiveColors) {
+        console.log('first');
+        return "";
+      }
+      else {
+        this.last = this.fiveColors[0].id - 1;
+        this.first = (this.last -5) || 0;
+        console.log(this.first, this.last);
+        for(var i = 0; i< 5; i++) {
+          this.fiveColors.splice( i, 1, this.fullList[this.first + i]);
+
+        }
+        console.log(this.fiveColors)
+        return this.fiveColors;
+      }
+
+    }
+
+    getNextFive(): any {
       this.fullList = this.colors;
       console.log(this.fullList);
       console.log('getFive');
@@ -66,7 +92,7 @@ module app.colors {
       // debugger;
       return this.fiveColors;
     }
-    
+
 
 
   }

@@ -1,7 +1,7 @@
 <div class="container" ng-controller="app.colors.MainController as vm">
   <div class="row ballsDiv">
     <div class="col-sm-1">
-      <div class="glyphicon glyphicon-menu-left" ng-click="loadPrevFive()"></div>
+      <div class="glyphicon glyphicon-menu-left" ng-click="vm.loadPrevFive()"></div>
     </div>
     <div class="slide">
       <div class="showColors col-md-2"  ng-repeat="colors in vm.fiveColors track by $index">
@@ -17,7 +17,7 @@
       </div>
     </div>
     <div class="col-sm-1">
-      <div class="right glyphicon glyphicon-menu-right" ng-click="vm.getFive()"></div>
+      <div class="right glyphicon glyphicon-menu-right" ng-click="vm.getNextFive()"></div>
     </div>
   </div>
 </div>
